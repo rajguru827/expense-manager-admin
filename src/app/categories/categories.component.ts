@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CategoryService } from './category.service';
+import { ICategory } from './category';
 
 @Component({
   selector: 'app-categories',
@@ -10,6 +11,7 @@ import { CategoryService } from './category.service';
 export class CategoriesComponent implements OnInit {
   
   categoryForm: FormGroup;
+  categories: ICategory[];
 
   constructor(    
     private fb: FormBuilder,
@@ -18,6 +20,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.getCategories();
   }
 
   createForm() {
@@ -30,8 +33,14 @@ export class CategoriesComponent implements OnInit {
 
   onClickSubmit() {
     this.categoryService.addCategory(this.categoryForm.value).subscribe(data => {
-      console.log(data)
+      this.categories.push(data.category);
+      this.categoryForm.reset();
     })
-    console.log(this.categoryForm.value)
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data.categories;
+    });
   }
 }

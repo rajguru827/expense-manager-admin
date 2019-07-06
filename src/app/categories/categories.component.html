@@ -1,25 +1,49 @@
-<p>categories works!</p>
-<h1>Add Category</h1>
-<form [formGroup]="categoryForm">
-    <input type = "text" 
-          name = "name" 
-          placeholder = " Category Name" 
-          formControlName="name" >
-    <br/>
-    <input type = "text" 
-          name = "description" 
-          placeholder = "description" 
-          formControlName="description" >
-    <br/>
-    <select formControlName="type" name="type">
-        <option value="">Select Type</option>
-        <option value="1">Income</option>
-        <option value="2">Expense</option>
-    </select>
-    <br>
-    <input type = "submit" 
-            value = "submit" 
-            (click) = "onClickSubmit()" >
-  </form>
-
-  
+<div class="row">
+      <div class="col-9 mt-4">
+            <h3>Categories</h3>
+            <hr>
+            <table class="table table-striped table-dark">
+                  <thead>
+                        <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Category Name</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Actions</th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                        <tr *ngFor="let category of categories; let i = index">
+                              <th scope="row">{{i + 1}}</th>
+                              <td>{{category.name}}</td>
+                              <td>{{category.description}}</td>
+                              <td><span *ngIf="category.type == 1">Income</span><span *ngIf="category.type == 2">Expense</span></td>
+                              <td><button class="btn btn-danger btn-sm" type="button">Delete</button></td>
+                        </tr>
+                        <tr>
+                  </tbody>
+            </table>
+      </div>
+      <div class="col-3 mt-4">
+            <h3>Add Account Type</h3>
+            <hr>
+            <form [formGroup]="categoryForm">
+                  <div class="form-group">
+                        <label>Category Name</label>
+                        <input type="text" name="name" class="form-control" formControlName="name">
+                  </div>
+                  <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" name="description" class="form-control" formControlName="description">
+                  </div>
+                  <div class="form-group">
+                        <select formControlName="type" name="type"  class="form-control">
+                              <option value="">Select Type</option>
+                              <option value="1">Income</option>
+                              <option value="2">Expense</option>
+                        </select>
+                  </div>
+                  <input type="submit" value="submit" class="btn btn-primary btn-block"  (click)="onClickSubmit()">
+            </form>
+      </div>
+</div>
