@@ -13,10 +13,10 @@ export class AccountService {
   ) { }
 
   getAccountTypes() {
-    return this.httpClient.get<any>("http://localhost:3000/accountType")
+    return this.httpClient.get<any>('http://localhost:3000/accountType');
   }
-  
+
   addAccountType(accounttype: IAccountType): Observable<IAccountTypeAddResponse> {
-    return this.httpClient.post<IAccountTypeAddResponse>("http://localhost:3000/accountType", accounttype)
+    return this.httpClient.post<IAccountTypeAddResponse>('http://localhost:3000/accountType', accounttype);
   }
 }

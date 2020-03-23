@@ -1,7 +1,7 @@
 export interface ICategory {
     name: string;
     description: string;
-    type: number
+    type: string;
 }
 
 export interface ICategoryAddResponse {

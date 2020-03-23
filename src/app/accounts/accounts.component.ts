@@ -9,21 +9,21 @@ import { IAccountType } from './account-type';
   styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent implements OnInit {
-  
+
   accountTypeForm: FormGroup;
   accountTypes: IAccountType[];
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService
-    ) {
+  ) {
 
   }
   ngOnInit() {
     this.createForm();
     this.accountService.getAccountTypes().subscribe(data => {
       this.accountTypes = data.accountTypes;
-    })
+    });
   }
 
   createForm() {
@@ -35,8 +35,8 @@ export class AccountsComponent implements OnInit {
 
   onClickSubmit() {
     this.accountService.addAccountType(this.accountTypeForm.value).subscribe(data => {
-      this.accountTypes.push(data.accountType)
-    })
+      this.accountTypes.push(data.accountType);
+    });
   }
 
 }

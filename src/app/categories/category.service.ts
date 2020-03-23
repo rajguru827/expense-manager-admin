@@ -12,11 +12,15 @@ export class CategoryService {
     private httpClient: HttpClient
   ) { }
 
-  addCategory(category: ICategory): Observable<ICategoryAddResponse> {
-    return this.httpClient.post<ICategoryAddResponse>("http://localhost:3000/category", category)
+  addCategory(category: ICategory) {
+    return this.httpClient.post<ICategoryAddResponse>('http://localhost:3000/category', category);
+  }
+
+  addSubCategory(subCategory) {
+    return this.httpClient.post<any>('http://localhost:3000/subCategory', subCategory);
   }
 
   getCategories() {
-    return this.httpClient.get<any>("http://localhost:3000/category");
+    return this.httpClient.get<any>('http://localhost:3000/category');
   }
 }
